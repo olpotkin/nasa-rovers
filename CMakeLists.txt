@@ -4,9 +4,9 @@ project(rover VERSION 0.0.1)
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-add_executable(rover main.cpp rover/rover.h rover/rover.cpp )
+add_executable(rover main.cpp rover/rover.h rover/rover.cpp)
 
-add_executable(rover_tests tests.cpp)
+add_executable(rover_tests tests.cpp rover/rover.h rover/rover.cpp)
 
 set_target_properties(rover rover_tests PROPERTIES
   CXX_STANDARD 14
