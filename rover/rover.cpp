@@ -46,16 +46,19 @@ void Rover::displayPos() {
 }
 
 
+// Set movement scenario
 void Rover::setCommands(const std::string &received_commands) {
   this->commands = received_commands;
 }
 
 
+// Get current movement scenario
 std::string Rover::getCommands() {
   return this->commands;
 }
 
 
+// Rotate rover to the right
 void Rover::rotateRight() {
   switch (pos_orientation) {
     case 'N': pos_orientation = 'E'; break;
@@ -65,6 +68,8 @@ void Rover::rotateRight() {
   }
 }
 
+
+// Rotate rover to the left
 void Rover::rotateLeft() {
   switch (pos_orientation) {
     case 'N': pos_orientation = 'W'; break;
@@ -75,3 +80,24 @@ void Rover::rotateLeft() {
 }
 
 
+// Move rover on the grid considering borders of the grid
+void Rover::moveOnGrid(int l_x, int l_y, int r_x, int r_y) {
+  switch (pos_orientation) {
+    case 'N':
+      if (pos_y < r_y) { ++pos_y; }
+      else { pos_y = r_y; }
+      break;
+    case 'E':
+      if (pos_x < r_x) { ++pos_x; }
+      else { pos_x = r_x; }
+      break;
+    case 'S':
+      if (pos_y > l_y) { --pos_y; }
+      else { pos_y = l_y; }
+      break;
+    case 'W':
+      if (pos_x > l_x) { --pos_x; }
+      else { pos_x = l_x; }
+      break;
+  }
+}

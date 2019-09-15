@@ -26,6 +26,7 @@ public:
   char getOrientation();
 
   /// @brief Set moving scenario for the rover
+  /// @param received_commands - string with movement scenario
   void setCommands(const std::string& received_commands);
   /// @brief Return moving scenario of the rover
   std::string getCommands();
@@ -37,13 +38,18 @@ public:
   /// @brief Rotate the rover to the left
   void rotateLeft();
 
-  
+  /// @brief Move the rover on the grid
+  /// @param l_x - left x corner of the grid
+  /// @param l_y - left y corner of the grid
+  /// @param r_x - right x corner of the grid
+  /// @param r_y - right y corner of the grid
+  void moveOnGrid(int l_x, int l_y, int r_x, int r_y);
+
 private:
   int         pos_x;              // x-position on the grid
   int         pos_y;              // y-position on the grid
   char        pos_orientation;    // Orientation (possible values are N-north, S-south, E-east, W-west)
   std::string commands;           // String with moving scenario for rover
 };
-
 
 #endif //ROVER_ROVER_H
