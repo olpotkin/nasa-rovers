@@ -19,20 +19,20 @@ public:
   ~Rover() = default;
 
   /// @brief Returns current x-position of the rover
-  int getPosX();
+  int getPosX() const;
   /// @brief Returns current y-position of the rover
-  int getPosY();
+  int getPosY() const;
   /// @brief Returns current orientation of the rover
-  char getOrientation();
+  char getOrientation() const;
 
   /// @brief Set moving scenario for the rover
   /// @param received_commands - string with movement scenario
   void setCommands(const std::string& received_commands);
   /// @brief Return moving scenario of the rover
-  std::string getCommands();
+  std::string getCommands() const;
 
   /// @brief Show position of the rover on the grid
-  void displayPos();
+  void displayPos() const;
   /// @brief Rotate the rover to the right
   void rotateRight();
   /// @brief Rotate the rover to the left
@@ -44,6 +44,11 @@ public:
   /// @param r_x - right x corner of the grid
   /// @param r_y - right y corner of the grid
   void moveOnGrid(int l_x, int l_y, int r_x, int r_y);
+
+  /// @brief Execute motion scenario of the rover
+  /// Basically, this is wrapper for moveOnGrid method
+  /// @param in_commands - string with commands
+  void execute(const std::string& in_commands, int l_x, int l_y, int r_x, int r_y);
 
 private:
   int         pos_x;              // x-position on the grid
