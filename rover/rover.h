@@ -6,6 +6,7 @@
 #define ROVER_ROVER_H
 
 #include <iostream>
+#include <string>
 
 
 class Rover {
@@ -13,7 +14,7 @@ public:
   /// @brief Constructor with default values
   explicit Rover();
   /// @brief Constructor with parameters
-  Rover (int pos_x, int pos_y, char pos_orientation);
+  Rover (int pos_x, int pos_y, char pos_orientation, std::string commands);
   /// @brief Destructor
   ~Rover() = default;
 
@@ -24,6 +25,11 @@ public:
   /// @brief Returns current orientation of the rover
   char getOrientation();
 
+  /// @brief Set moving scenario for the rover
+  void setCommands(const std::string& received_commands);
+  /// @brief Return moving scenario of the rover
+  std::string getCommands();
+
   /// @brief Show position of the rover on the grid
   void displayPos();
   /// @brief Rotate the rover to the right
@@ -31,10 +37,12 @@ public:
   /// @brief Rotate the rover to the left
   void rotateLeft();
 
+  
 private:
-  int pos_x;                 // x-position on the grid
-  int pos_y;                 // y-position on the grid
-  char pos_orientation;      // Orientation (possible values are N-north, S-south, E-east, W-west)
+  int         pos_x;              // x-position on the grid
+  int         pos_y;              // y-position on the grid
+  char        pos_orientation;    // Orientation (possible values are N-north, S-south, E-east, W-west)
+  std::string commands;           // String with moving scenario for rover
 };
 
 

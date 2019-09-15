@@ -1,41 +1,58 @@
 #include "rover.h"
 
+#include <utility>
+
 
 // Default ctor
 Rover::Rover() :
   pos_x(0),
   pos_y(0),
-  pos_orientation('N') { }
+  pos_orientation('N'),
+  commands(""){ }
 
 
 // Ctor with parameters
-Rover::Rover(int pos_x, int pos_y, char pos_orientation) :
+Rover::Rover(int pos_x, int pos_y, char pos_orientation, std::string commands) :
   pos_x(pos_x),
   pos_y(pos_y),
-  pos_orientation(pos_orientation) { }
+  pos_orientation(pos_orientation),
+  commands(std::move(commands)){ }
 
 
 // Return x-pos
 int Rover::getPosX() {
-  return pos_x;
+  return this->pos_x;
 }
 
 
 // Return y-pos
 int Rover::getPosY() {
-  return pos_y;
+  return this->pos_y;
 }
 
 
 // Return orientation
 char Rover::getOrientation() {
-  return pos_orientation;
+  return this->pos_orientation;
 }
 
 
 // Show position of the rover
 void Rover::displayPos() {
-  std::cout << pos_x << " " << pos_y << " " << pos_orientation << std::endl;
+  std::cout << this->pos_x << " "
+    << this->pos_y << " "
+    << this->pos_orientation
+    << std::endl;
+}
+
+
+void Rover::setCommands(const std::string &received_commands) {
+  this->commands = received_commands;
+}
+
+
+std::string Rover::getCommands() {
+  return this->commands;
 }
 
 
@@ -56,3 +73,5 @@ void Rover::rotateLeft() {
     case 'W': pos_orientation = 'S'; break;
   }
 }
+
+
